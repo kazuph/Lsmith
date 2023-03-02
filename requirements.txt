@@ -12,6 +12,9 @@ cuda-python<12
 diffusers==0.12.1
 ftfy
 matplotlib
+tensorrt==8.5.3.1
+torch==1.12.0+cu116 
+--extra-index-url https://download.pytorch.org/whl/cu116
 onnx==1.12.0
 --extra-index-url https://pypi.ngc.nvidia.com
 onnx-graphsurgeon==0.3.25

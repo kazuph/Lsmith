@@ -27,8 +27,12 @@ RUN cd  /usr/local/cuda-11.8/targets/x86_64-linux/lib/ \
 
 ENV LD_LIBRARY_PATH /usr/local/cuda-11.8/targets/x86_64-linux/lib:$LD_LIBRARY_PATH
 
-COPY . /app
 
 WORKDIR /app
+COPY requirements.txt requirements.txt
+RUN /opt/conda/bin/python -m pip install -r requirements.txt
+
+RUN mkdir -p /app/lib/trt/lib && curl -SL https://github.com/ddPn08/Lsmith/releases/download/tensorrt-8.5.3.1/libnvinfer_plugin.so -o /app/lib/trt/lib/libnvinfer_plugin.so
+COPY . /app
 
 ENTRYPOINT [ "/opt/conda/bin/python", "-u", "/app/launch.py" ]

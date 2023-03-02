@@ -9,9 +9,11 @@ services:
     volumes:
       - ./docker-data/models:/app/models
       - ./docker-data/outputs:/app/outputs
+      - ./docker-data/diffusers:/app/diffusers
     environment:
       - COMMANDLINE_ARGS=
       - UVICORN_ARGS=--host 0.0.0.0
+      - PYTORCH_CUDA_ALLOC_CONF=garbage_collection_threshold:0.6,max_split_size_mb:64
     deploy:
       resources:
         reservations:
